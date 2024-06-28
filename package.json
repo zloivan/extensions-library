@@ -11,9 +11,17 @@
   ],
   "category": "editor extensions",
   "dependencies": {},
+  "_upm": {
+    "changelog": "- Changed changelog file format"
+  },
   "author": {
     "name": "zloivan",
     "url": "https://github.com/zloivan"
   },
-  "documentationUrl": "https://github.com/zloivan/Extensions/blob/master/README.md"
+  "documentationUrl": "https://github.com/zloivan/Extensions/blob/master/README.md",
+  "repository": {
+    "url": "git@github.com:zloivan/Extensions.git",
+    "type": "git",
+    "revision": "0826c410ed028220f6c1671d166cf99c5b3be373"
+  }
 }
