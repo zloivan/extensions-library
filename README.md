@@ -9,5 +9,5 @@ Unity Extensions Library is a growing collection of handy extension methods, hel
 1. Open your Unity project.
 2. In the top menu, go to `Window` -> `Package Manager`.
 3. Click on the `+` icon in the top left corner and select `Add package from git URL...`.
-4. Enter the following URL: `https://github.com/zloivan/UnityExtensions.git`
+4. Enter the following URL: `https://github.com/zloivan/Extensions.git`
 5. Click `Add` to install the package.
