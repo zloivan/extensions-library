@@ -1,6 +1,5 @@
 # Unity Extensions Library
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Unity Extensions Library is a growing collection of handy extension methods, helpers, attributes, and other utilities designed to enhance and simplify your Unity development workflow. Whether you're a seasoned developer or just starting, this library aims to provide tools that will help streamline your coding process and add efficiency to your projects.
 

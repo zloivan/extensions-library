@@ -1,6 +1,6 @@
 {
-    "name": "UnityExtensions",
-    "rootNamespace": "UnityExtensions",
+    "name": "IKhom-ExtensionsLibrary",
+    "rootNamespace": "IKhom",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

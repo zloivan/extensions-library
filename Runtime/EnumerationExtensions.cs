@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace UnityExtensions
+namespace IKhom.ExtensionsLibrary.Runtime
 {
     /// <summary>
     /// Provides extension methods for <see cref="IEnumerable{T}"/>.

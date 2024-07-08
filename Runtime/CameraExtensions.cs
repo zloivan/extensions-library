@@ -3,7 +3,7 @@
 
 using UnityEngine;
 
-namespace UnityExtensions
+namespace IKhom.ExtensionsLibrary.Runtime
 {
     public static class CameraExtensions
     {

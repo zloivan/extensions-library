@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine.UI;
 
-namespace UnityExtensions
+namespace IKhom.ExtensionsLibrary.Runtime
 {
     public static class ToggleGroupExtensions
     {

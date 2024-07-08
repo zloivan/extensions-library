@@ -4,7 +4,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace UnityExtensions
+namespace IKhom.ExtensionsLibrary.Runtime
 {
     /// <summary>
     /// Provides extension methods for the <see cref="GameObject"/> class.
@@ -118,6 +118,24 @@ namespace UnityExtensions
         public static void HideInHierarchy(this GameObject gameObject)
         {
             gameObject.hideFlags = HideFlags.HideInHierarchy;
+        }
+
+        
+        /// <summary>
+        /// Moves the specified GameObject in the Unity scene hierarchy.
+        /// </summary>
+        /// <param name="target">The GameObject to move.</param>
+        /// <param name="x">The new X position of the GameObject, or null to leave it unchanged.</param>
+        /// <param name="y">The new Y position of the GameObject, or null to leave it unchanged.</param>
+        /// <param name="z">The new Z position of the GameObject, or null to leave it unchanged.</param>
+        /// <param name="relativeTo">The space in which the new position is specified. Default is Self, meaning the position is relative to the GameObject's own coordinate system.</param>
+        public static void Move(this GameObject target,
+            float? x = null,
+            float? y = null,
+            float? z = null,
+            Space relativeTo = Space.Self)
+        {
+            target.transform.Move(x, y, z, relativeTo);
         }
     }
 }

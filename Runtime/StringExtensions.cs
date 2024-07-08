@@ -3,7 +3,7 @@
 
 using System;
 
-namespace UnityExtensions
+namespace IKhom.ExtensionsLibrary.Runtime
 {
     public static class StringExtensions
     {

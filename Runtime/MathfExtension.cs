@@ -4,7 +4,7 @@
 using Unity.Mathematics;
 #endif
 
-namespace UnityExtensions
+namespace IKhom.ExtensionsLibrary.Runtime
 {
     public static class MathfExtension
     {
