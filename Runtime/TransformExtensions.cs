@@ -1,8 +1,6 @@
-// ReSharper disable UnusedType.Global
-// ReSharper disable UnusedMember.Global
-
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace IKhom.ExtensionsLibrary.Runtime
@@ -17,6 +15,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// <param name="maxDistance">The maximum distance allowed between the two transforms.</param>
         /// <param name="maxAngle">The maximum allowed angle between the transform's forward vector and the direction to the target (default is 360).</param>
         /// <returns>True if the transform is within range and angle (if provided) of the target, false otherwise.</returns>
+        [PublicAPI]
         public static bool InRangeOf(this Transform source, Transform target, float maxDistance, float maxAngle = 360f)
         {
             var directionToTarget = (target.position - source.position).With(y: 0);
@@ -28,6 +27,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// Resets the transform's position, scale, and rotation to their default values.
         /// </summary>
         /// <param name="transform">The transform to reset.</param>
+        [PublicAPI]
         public static void Reset(this Transform transform)
         {
             transform.position = Vector3.zero;
@@ -40,12 +40,20 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// </summary>
         /// <param name="parent">The parent transform.</param>
         /// <returns>An enumerable collection of the parent transform's children.</returns>
+        [PublicAPI]
         public static IEnumerable<Transform> Children(this Transform parent)
         {
+            
+#if UNITY_2021_1_OR_NEWER
+                return parent.Cast<Transform>();
+#else
+            List<Transform> children = new List<Transform>();
             foreach (Transform child in parent)
             {
-                yield return child;
+                children.Add(child);
             }
+            return children;
+#endif
         }
 
         /// <summary>
@@ -53,6 +61,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// </summary>
         /// <param name="parent">The parent transform.</param>
         /// <returns>An enumerable collection of the parent transform's active children.</returns>
+        [PublicAPI]
         public static IEnumerable<Transform> ActiveChildren(this Transform parent)
         {
             return parent.Children().Where(x => x.gameObject.activeInHierarchy);
@@ -62,6 +71,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// Destroys all child game objects of the given transform.
         /// </summary>
         /// <param name="parent">The parent transform.</param>
+        [PublicAPI]
         public static void DestroyChildren(this Transform parent)
         {
             parent.ForEveryChild(child => Object.Destroy(child.gameObject));
@@ -71,6 +81,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// Immediately destroys all child game objects of the given transform.
         /// </summary>
         /// <param name="parent">The parent transform.</param>
+        [PublicAPI]
         public static void DestroyChildrenImmediate(this Transform parent)
         {
             parent.ForEveryChild(child => Object.DestroyImmediate(child.gameObject));
@@ -80,6 +91,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// Enables all child game objects of the given transform.
         /// </summary>
         /// <param name="parent">The parent transform.</param>
+        [PublicAPI]
         public static void EnableChildren(this Transform parent)
         {
             parent.ForEveryChild(child => child.gameObject.SetActive(true));
@@ -89,6 +101,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// Disables all child game objects of the given transform.
         /// </summary>
         /// <param name="parent">The parent transform.</param>
+        [PublicAPI]
         public static void DisableChildren(this Transform parent)
         {
             parent.ForEveryChild(child => child.gameObject.SetActive(false));
@@ -99,6 +112,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// </summary>
         /// <param name="parent">The parent transform.</param>
         /// <param name="action">The action to perform on each child transform.</param>
+        [PublicAPI]
         public static void ForEveryChild(this Transform parent, System.Action<Transform> action)
         {
             for (var i = parent.childCount - 1; i >= 0; i--)
@@ -120,7 +134,12 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// If <paramref name="relativeTo"/> is set to Space.Self, the transform's local coordinates are used.
         /// Otherwise, the global coordinates are used.
         /// </remarks>
-        public static void Move(this Transform target, float? x = null, float? y = null, float? z = null, Space relativeTo = Space.Self)
+        [PublicAPI]
+        public static void Move(this Transform target,
+            float? x = null,
+            float? y = null,
+            float? z = null,
+            Space relativeTo = Space.Self)
         {
             if (target is RectTransform rectTransform)
             {

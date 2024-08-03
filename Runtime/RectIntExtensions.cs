@@ -7,6 +7,12 @@ namespace IKhom.ExtensionsLibrary.Runtime
 {
     public static class RectIntExtensions
     {
+        /// <summary>
+        /// Computes the intersection of two RectInt objects.
+        /// </summary>
+        /// <param name="rectA">The first RectInt object.</param>
+        /// <param name="rectB">The second RectInt object.</param>
+        /// <returns>A new RectInt object representing the intersection of rectA and rectB.</returns>
         public static RectInt Intersection(this RectInt rectA, RectInt rectB)
         {
             return new RectInt(

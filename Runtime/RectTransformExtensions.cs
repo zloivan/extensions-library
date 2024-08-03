@@ -1,6 +1,5 @@
-// ReSharper disable UnusedType.Global
-// ReSharper disable UnusedMember.Global
-
+using IKhom.ExtensionsLibrary.Runtime.helpers;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace IKhom.ExtensionsLibrary.Runtime
@@ -12,8 +11,11 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// </summary>
         /// <param name="rectTransform">The RectTransform to get the world Rect for.</param>
         /// <returns>A Rect representing the world space bounds of the RectTransform.</returns>
-        public static Rect GetWorldRect(this RectTransform rectTransform)
+        [PublicAPI]
+        public static Rect GetWorldRect([NotNull] this RectTransform rectTransform)
         {
+            Validator.ValidateNotNull(rectTransform, nameof(rectTransform));
+
             var corners = new Vector3[4];
 
             rectTransform.GetWorldCorners(corners);
@@ -30,8 +32,12 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// <param name="rectTransform">The RectTransform to get the screen Rect for.</param>
         /// <param name="camera">The camera to use for the screen space conversion.</param>
         /// <returns>A RectInt representing the screen space bounds of the RectTransform.</returns>
-        public static RectInt GetScreenRect(this RectTransform rectTransform, Camera camera)
+        [PublicAPI]
+        public static RectInt GetScreenRect([NotNull] this RectTransform rectTransform, [NotNull] Camera camera)
         {
+            Validator.ValidateNotNull(rectTransform, nameof(rectTransform));
+            Validator.ValidateNotNull(camera, nameof(camera));
+
             var rect = rectTransform.GetWorldRect();
 
             var rectMax = camera.WorldToScreenPoint(rect.max);
@@ -53,10 +59,13 @@ namespace IKhom.ExtensionsLibrary.Runtime
         /// <param name="rectTransform">The RectTransform to move.</param>
         /// <param name="x">The amount to move along the x-axis. If null, no movement along the x-axis.</param>
         /// <param name="y">The amount to move along the y-axis. If null, no movement along the y-axis.</param>
-        public static void Move(this RectTransform rectTransform,
+        [PublicAPI]
+        public static void Move([NotNull] this RectTransform rectTransform,
             float? x = null,
             float? y = null)
         {
+            Validator.ValidateNotNull(rectTransform, nameof(rectTransform));
+
             var moveTo = new Vector2(x ?? 0, y ?? 0);
             rectTransform.anchoredPosition += moveTo;
         }
