@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using IKhom.ExtensionsLibrary.Runtime.helpers;
 using JetBrains.Annotations;
@@ -31,8 +32,8 @@ namespace IKhom.ExtensionsLibrary.Runtime
         [PublicAPI]
         public static string Shorten(this string val, int maxLength)
         {
-            if (val.IsBlank()) return val;
-            return val.Length <= maxLength ? val : val[..maxLength];
+            if (string.IsNullOrEmpty(val)) return val;
+            return val.Length <= maxLength ? val : val.Substring(0, maxLength);
         }
 
         /// <summary>Slices a string from the start index to the end index.</summary>
@@ -42,7 +43,7 @@ namespace IKhom.ExtensionsLibrary.Runtime
         {
             Validator.ValidateNotNullOrEmpty(val, nameof(val));
             Validator.ValidateNumberInRange(startIndex, 0, val.Length - 1, nameof(startIndex));
-            
+
             // If the end index is negative, it will be counted from the end of the string.
             endIndex = endIndex < 0 ? val.Length + endIndex : endIndex;
 
@@ -86,7 +87,11 @@ namespace IKhom.ExtensionsLibrary.Runtime
             return source.IndexOf(toCheck, comparisonType) >= 0;
         }
 
-        /// <summary>Ex: "thisIsCamelCase" -&gt; "This Is Camel Case"</summary>
+        /// <summary>
+        /// Splits a PascalCase string into a camelCase string.
+        /// </summary>
+        /// <param name="input">The input string in PascalCase format.</param>
+        /// <returns>A string in camelCase format, where each word after the first is capitalized and separated by a space.</returns>
         [PublicAPI]
         public static string SplitPascalCase(this string input)
         {
@@ -106,18 +111,22 @@ namespace IKhom.ExtensionsLibrary.Runtime
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Checks if the specified string ends with the specified substring, without performing a full string comparison.
+        /// </summary>
+        /// <param name="str">The string to check.</param>
+        /// <param name="endsWith">The substring to check for at the end of the string.</param>
+        /// <returns>True if the string ends with the specified substring, otherwise false.</returns>
         [PublicAPI]
         public static bool FastEndsWith(this string str, string endsWith)
         {
             if (str.Length < endsWith.Length)
                 return false;
-            for (var index = 0; index < endsWith.Length; ++index)
-            {
-                if (str[^(1 + index)] != endsWith[^(1 + index)])
-                    return false;
-            }
 
-            return true;
+            var strIndex = str.Length - 1;
+            var endsWithIndex = endsWith.Length - 1;
+
+            return !endsWith.Where((t, index) => str[strIndex - index] != endsWith[endsWithIndex - index]).Any();
         }
     }
 }
