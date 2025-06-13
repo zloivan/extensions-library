@@ -1,6 +1,7 @@
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 
+#if NEWTONSOFT_JSON_AVAILABLE
 using System;
 using IKhom.ExtensionsLibrary.Runtime.helpers;
 using JetBrains.Annotations;
@@ -110,3 +111,4 @@ namespace IKhom.ExtensionsLibrary.Runtime
         }
     }
 }
+#endif

@@ -2,7 +2,7 @@
   "name": "com.zloivan.extensions",
   "displayName": "IKhom Extensions Library",
   "description": "Unity Extensions Library, a growing collection of handy extension methods, helpers, attributes, and other utilities designed to enhance and simplify your Unity development workflow. Whether you're a seasoned developer or just starting, this library aims to provide tools that will help streamline your coding process and add efficiency to your projects.",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "keywords": [
     "extension",
     "inspector",
@@ -11,16 +11,16 @@
   "category": "editor extensions",
   "dependencies": {},
   "_upm": {
-    "changelog": "- Code cleanup\n- Documentation added to all methods\n- Added built in login that can be switched off"
+    "changelog": "- Add `GetOrAddComponent` extension method for Component\n- Define conditional compilation for `JsonExtensions` based on `NEWTONSOFT_JSON_AVAILABLE`"
   },
   "author": {
     "name": "Ivan Khomichkov",
     "url": "https://github.com/zloivan"
   },
-  "documentationUrl": "https://github.com/zloivan/Extensions/blob/master/README.md",
+  "documentationUrl": "https://github.com/zloivan/extensions-library/blob/master/README.md",
   "repository": {
-    "url": "git@github.com:zloivan/Extensions.git",
+    "url": "git@github.com:zloivan/extensions-library.git",
     "type": "git",
-    "revision": "58d891cbc70fe5d061ce238b0b286edd047102a9"
+    "revision": "04ee63c0089ec0733fcddbe75e9c98dd74760395"
   }
 }
